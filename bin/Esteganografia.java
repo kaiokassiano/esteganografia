@@ -3,6 +3,7 @@ package esteganografia_mat_discreta;
 import org.farng.mp3.MP3File;
 import org.farng.mp3.id3.AbstractID3v2;
 
+// #LiberaOPushKaio
 public class Esteganografia {
 
 	private static Vigenere vigenere;
