@@ -1,0 +1,3 @@
+A classe ID3 ainda está incompleta e vai ser refatorada;
+A classe Esteganografia está incompleta, faltam métodos;
+A classe Vigenere está incompleta, faltam métodos
