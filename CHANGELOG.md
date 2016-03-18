@@ -1,4 +1,4 @@
-esteganografia 1.0.0, 2016-03-17
+steganomaker 1.0.0, 2016-03-17
 --------------------------------
 
 Added - Vigenere.java in master branch<br>
