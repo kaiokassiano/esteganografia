@@ -1,3 +1,3 @@
-A classe ID3 ainda está incompleta e vai ser refatorada;
-A classe Esteganografia está incompleta, faltam métodos;
-A classe Vigenere está incompleta, faltam métodos
+A classe ID3 ainda está incompleta e ainda vai ser refatorada;
+A classe Vigenere está incompleta, faltando apenas o método de igualar o tamanho da chave e da mensagem
+A classe Esteganografia está completa.
