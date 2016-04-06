@@ -13,28 +13,18 @@ import org.farng.mp3.id3.ID3v2_4Frame;
 
 public class ID3 {
 
-	private static MP3File mp3file;
-	private static AbstractID3v2 tag;
-	private static AbstractID3v2Frame frame;
-	private static AbstractID3v2FrameBody frameBody;
+	private MP3File mp3file;
+	private AbstractID3v2 tag;
+	private AbstractID3v2Frame frame;
+	private AbstractID3v2FrameBody frameBody;
 
-	public static void main(String[] args) {
+	public ID3(String caminho) throws IOException, TagException {
 
-		try {
-			mp3file = new MP3File("C:\\Users\\Kaio\\Music\\sample.mp3");
-			tag = mp3file.getID3v2Tag();
-
-			// adicionaMensagemAoArquivo("eanes_123456");
-
-			System.out.println(tag);
-
-			mp3file.save();
-		} catch (IOException | TagException e) {
-			e.printStackTrace();
-		}
+		mp3file = new MP3File(caminho);
+		tag = mp3file.getID3v2Tag();
 	}
 
-	public static void adicionaMensagemAoArquivo(String mensagem) throws IOException, TagException {
+	public void adicionaMensagemAoArquivo(String mensagem) throws IOException, TagException {
 
 		if (tag.hasFrame("TMOO")) {
 			((AbstractFrameBodyTextInformation) (tag.getFrame("TMOO")).getBody()).setText(mensagem);
@@ -44,15 +34,19 @@ public class ID3 {
 			tag.getFrame("TMOO").setBody(frameBody);
 			((FrameBodyTMOO) frame.getBody()).setText(mensagem);
 		}
+		mp3file.save();
 	}
 
-	public static AbstractID3v2Frame criaFrame() {
+	public AbstractID3v2Frame criaFrame() {
 		frameBody = new FrameBodyTMOO((byte) 0, "");
 		return new ID3v2_4Frame(frameBody);
 	}
 
-	public String getFrameMensagem() {
+	public String getFrameMensagem() throws Exception {
 		frame = tag.getFrame("TMOO");
+		if (frame == null) {
+			throw new Exception("Nao existe mensagem no arquivo selecionado.");
+		}
 		return ((FrameBodyTMOO) frame.getBody()).getText();
 
 	}
