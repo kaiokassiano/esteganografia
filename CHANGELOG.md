@@ -1,4 +1,4 @@
-steganomaker 0.3.1, 2016-04-16
+steganomaker 0.3.0, 2016-04-16
 -
 **Added** - Menu.java, that creates a interactive window to search the mp3 file, and the options to hide/show the message<br>
 **Added** - Main.java, that contains the main() method, and calls Menu.java<br>
