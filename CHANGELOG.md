@@ -20,5 +20,5 @@ steganomaker 0.2.0, 2016-03-18
 
 steganomaker 0.1.0, 2016-03-17
 -
-**Added** - Vigenere.java, that implements <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher">Vigenère Cipher</a> for encoding
+**Added** - Vigenere.java, that implements <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher">Vigenère Cipher</a> for encoding<br>
 **Added** - Esteganografia.java, that contains main method
