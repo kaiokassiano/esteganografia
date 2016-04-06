@@ -8,45 +8,53 @@ import org.farng.mp3.id3.AbstractFrameBodyTextInformation;
 import org.farng.mp3.id3.AbstractID3v2;
 import org.farng.mp3.id3.AbstractID3v2Frame;
 import org.farng.mp3.id3.AbstractID3v2FrameBody;
-import org.farng.mp3.id3.FrameBodyTYER;
+import org.farng.mp3.id3.FrameBodyTMOO;
 import org.farng.mp3.id3.ID3v2_4Frame;
 
 public class ID3 {
 
-	private MP3File mp3file;
-	private AbstractID3v2 tag;
-	private AbstractID3v2Frame frame;
-	private AbstractID3v2FrameBody frameBody;
+	private static MP3File mp3file;
+	private static AbstractID3v2 tag;
+	private static AbstractID3v2Frame frame;
+	private static AbstractID3v2FrameBody frameBody;
 
-	public ID3() throws IOException, TagException {
+	public static void main(String[] args) {
 
-		mp3file = new MP3File("C:\\Users\\Kaio\\Music\\sample.mp3");
-		tag = mp3file.getID3v2Tag();
+		try {
+			mp3file = new MP3File("C:\\Users\\Kaio\\Music\\sample.mp3");
+			tag = mp3file.getID3v2Tag();
+
+			// adicionaMensagemAoArquivo("eanes_123456");
+
+			System.out.println(tag);
+
+			mp3file.save();
+		} catch (IOException | TagException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void adicionaMensagemAoArquivo(String mensagem) throws IOException, TagException {
+	public static void adicionaMensagemAoArquivo(String mensagem) throws IOException, TagException {
 
-		if (tag.hasFrame("TYER")) {
-			System.out.println(tag);
-			((AbstractFrameBodyTextInformation) (tag.getFrame("TYER")).getBody()).setText(mensagem);
-			System.out.println(tag);
+		if (tag.hasFrame("TMOO")) {
+			((AbstractFrameBodyTextInformation) (tag.getFrame("TMOO")).getBody()).setText(mensagem);
 		} else {
 			frame = criaFrame();
 			tag.setFrame(frame);
-			tag.getFrame("TYER").setBody(frameBody);
-			((FrameBodyTYER) frame.getBody()).setText(mensagem);
+			tag.getFrame("TMOO").setBody(frameBody);
+			((FrameBodyTMOO) frame.getBody()).setText(mensagem);
 		}
-		this.mp3file.save();
 	}
 
-	public AbstractID3v2Frame criaFrame() {
-		frameBody = new FrameBodyTYER((byte) 0, "");
+	public static AbstractID3v2Frame criaFrame() {
+		frameBody = new FrameBodyTMOO((byte) 0, "");
 		return new ID3v2_4Frame(frameBody);
 	}
 
 	public String getFrameMensagem() {
-		frame = tag.getFrame("TYER");
-		return ((FrameBodyTYER) frame.getBody()).getText();
+		frame = tag.getFrame("TMOO");
+		return ((FrameBodyTMOO) frame.getBody()).getText();
 
 	}
+
 }
